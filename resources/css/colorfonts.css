@@ -1,0 +1,14 @@
+:root{
+    --color-back: #FFE2E2;
+    --color-front: #FFC7C7;
+    --color-accent: #8785A2;
+}
+
+@font-face {
+    font-family: "MarcScript";
+    src: url(/fonts/MarckScript-Regular.ttf);
+}
+
+.font{
+    font-family: "MarcScript";
+}

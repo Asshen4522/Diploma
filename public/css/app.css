@@ -1,0 +1,141 @@
+.card{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px;
+    border-style: solid;
+    background-color: var(--color-front);
+    border-radius: 20px;
+    border-color: var(--color-accent);
+}
+
+.card__elem{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.card__elem-img{
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+}:root{
+    --color-back: #FFE2E2;
+    --color-front: #FFC7C7;
+    --color-accent: #8785A2;
+}
+
+@font-face {
+    font-family: "MarcScript";
+    src: url(/fonts/MarckScript-Regular.ttf);
+}
+
+.font{
+    font-family: "MarcScript";
+}.all {
+    background-color: var(--color-back);
+    margin: 0;
+}
+
+.page {
+    margin-left: 200px;
+    margin-right: 200px;
+}.catalog {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+}.top-menu {
+    background-color: var(--color-front);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    align-items: center;
+    font-size: 50px;
+    border: 0;
+    border-bottom: 5px;
+    border-color: var(--color-accent);
+    border-style: solid;
+}
+
+.top-menu__elem {
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+}
+
+.top-menu__elem:hover {
+    background-color: var(--color-accent);
+    transition: 1s;
+}
+
+.costul {
+    height: 50px;
+}.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__header {
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+.form__text {
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.form__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 100%;
+    gap: 30px;
+}
+
+.form__input {
+    width: 100%;
+    height: 50px;
+    font-size: 40px;
+    border-radius: 20px;
+    border-color: var(--color-accent);
+    background-color: var(--color-front);
+    text-align: center;
+}
+
+.form__button {
+    height: 50px;
+    width: 500px;
+    font-size: 40px;
+    border-color: var(--color-accent);
+    background-color: var(--color-front);
+    border-radius: 20px;
+}
+
+.form__submit {
+    display: none;
+}
+
+.form__error {
+    margin-top: 4px;
+    color: var(--color-header);
+    border: var(--color-buttons);
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    transition: 1s;
+    height: 0px;
+    overflow: hidden;
+    font-family: "CormorantSC-R";
+}

@@ -1,0 +1,32 @@
+.top-menu {
+    background-color: var(--color-front);
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    align-items: center;
+    font-size: 50px;
+    border: 0;
+    border-bottom: 5px;
+    border-color: var(--color-accent);
+    border-style: solid;
+}
+
+.top-menu__elem {
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+}
+
+.top-menu__elem:hover {
+    background-color: var(--color-accent);
+    transition: 1s;
+}
+
+.costul {
+    height: 50px;
+}

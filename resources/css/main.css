@@ -1,0 +1,9 @@
+.all {
+    background-color: var(--color-back);
+    margin: 0;
+}
+
+.page {
+    margin-left: 200px;
+    margin-right: 200px;
+}
