@@ -129,8 +129,8 @@
 
 .form__error {
     margin-top: 4px;
-    color: var(--color-header);
-    border: var(--color-buttons);
+    background-color: var(--color-header);
+    border-color: var(--color-buttons);
     border-radius: 5px;
     border-width: 1px;
     border-style: solid;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\logistics;
+use App\Http\Controllers\userController;
 use App\Models\book;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::view('/login', 'login');
 Route::view('/register', 'register');
 
 Route::get('/cabinet', [logistics::class, 'cabinetchoice']);
+
+Route::post('/registrate', [userController::class, 'registrate']);
+Route::post('/validation', [userController::class, 'validate']);
+Route::post('/authorisate', [userController::class, 'authorisate']);

@@ -19437,7 +19437,111 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // получаем необходимую форму
 var userForm = document.forms['userForms']; //  выбираем кнопку подтверждения
 
-var submitButton = userForm.querySelector('.form__button');
+var submitButton = userForm.querySelector('.form__button'); // добавляем действие на кнопку "отправить" - провести валидацию и в случае успеха  применить событие к невидимой кнопке подтверждения
+
+submitButton.addEventListener('click', function (evt) {
+  var inputs = Array.from(userForm.querySelectorAll('.form__input'));
+  validate(inputs);
+
+  if (inputs.every(function (input) {
+    return input.validity.valid;
+  })) {
+    var btnSend = userForm.querySelector("button.form__submit");
+    var event = new MouseEvent('click');
+    btnSend.dispatchEvent(event);
+  }
+}); // главная функция валидации
+
+function validate(inputs) {
+  inputs.forEach(function (input) {
+    validateInput(input);
+
+    if (input.validity.valid) {
+      if (input.name === 'login') {
+        validateLogin(input);
+      } else if (input.name === 'password') {
+        validatePassword(input);
+      }
+    }
+  });
+} // Валидация логина (часть 1 - символы)
+
+
+function validateLogin(input) {
+  var reg = /[а-яА-Яa-zA-Z0-9\_\-]/g;
+  var matches = input.value.match(reg);
+
+  if (matches) {
+    if (location.pathname === '/login') {
+      hideError(input);
+    } else {
+      loginUnique(input);
+    }
+  } else {
+    renderError(input, "Логин содержит запрещенные символы");
+  }
+} // Валидация логина (часть2 - уникальность)
+
+
+function loginUnique(input) {
+  var ENDPOINT = '/validation';
+  var token = userForm.querySelector('[name="_token"]').value;
+  fetch(ENDPOINT, {
+    method: "POST",
+    body: JSON.stringify({
+      login: input.value
+    }),
+    headers: {
+      'X-CSRF-TOKEN': token,
+      'Content-Type': 'application/json'
+    }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (body) {
+    if (body.success) {
+      hideError(input);
+    } else {
+      renderError(input, 'Пользователь с таким логином уже есть');
+    }
+  });
+} // Валидация пароля
+
+
+function validatePassword(input) {
+  var reg = /[а-яА-Яa-zA-Z0-9\_\-]/g;
+  var matches = input.value.match(reg);
+
+  if (matches) {
+    hideError(input);
+  } else {
+    renderError(input, "Пароль содержит запрещенные символы");
+  }
+} // Валидация браузера
+
+
+function validateInput(input) {
+  if (!input.validity.valid) {
+    renderError(input, input.validationMessage);
+  } else {
+    hideError(input);
+  }
+} //Вывод ошибки
+
+
+function renderError(element, message) {
+  var elementName = element.name;
+  var errorContainer = userForm.querySelector("[data-error-name=\"".concat(elementName, "\"]"));
+  errorContainer.textContent = message;
+  errorContainer.style.height = errorContainer.scrollHeight + 'px';
+} //Уборка ошибки
+
+
+function hideError(element) {
+  var elementName = element.name;
+  var errorContainer = userForm.querySelector('[data-error-name="' + elementName + '"]');
+  errorContainer.textContent = "";
+  errorContainer.style.height = '0';
+}
 
 /***/ }),
 

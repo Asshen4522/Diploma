@@ -12,5 +12,6 @@
     <div class="page">
         @yield('body')
     </div>
+    <script src="js/app.js"></script>
 </body>
 </html>
