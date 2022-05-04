@@ -11,10 +11,10 @@
             @csrf
             @method('post')
             <input type="text" class="form__input font" name="login" placeholder="Логин" required>
-            <span class="form__error" data-error-name="login"></span>
+            <span class="form__error font data-error-name="login"></span>
 
             <input type="password" class="form__input font" name="password" placeholder="Пароль" required>
-            <span class="form__error" data-error-name="password"></span>
+            <span class="form__error font" data-error-name="password"></span>
 
             <button type="button" class="form__button font">Зарегистрироваться</button>
             <button type="submit" class="form__submit"></button>

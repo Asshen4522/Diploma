@@ -26,6 +26,7 @@ Route::view('/login', 'login');
 Route::view('/register', 'register');
 
 Route::get('/cabinet', [logistics::class, 'cabinetchoice']);
+Route::get('/logout', [userController::class, 'logout']);
 
 Route::post('/registrate', [userController::class, 'registrate']);
 Route::post('/validation', [userController::class, 'validate']);

@@ -138,4 +138,22 @@
     height: 0px;
     overflow: hidden;
     font-family: "CormorantSC-R";
+}.formDisplayNone {
+    display: none;
+}
+
+.formDisplayFlex {
+    display: flex;
+}
+
+.adminPage {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+.buttonActive {
+    background-color: var(--color-accent);
 }

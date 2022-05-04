@@ -43,6 +43,14 @@ class userController extends Controller
     {
         if (Auth::attempt($request->only('login', 'password'))) {
             return redirect('/');
+        } else {
+            return redirect('/login');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

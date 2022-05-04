@@ -1,2 +1,3 @@
 require('./bootstrap');
-require('./forms')
+require('./forms');
+require('./formSwitcher')

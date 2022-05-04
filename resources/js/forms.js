@@ -2,22 +2,29 @@
 // получаем необходимую форму
 const userForm = document.forms['userForms']
 
-//  выбираем кнопку подтверждения
-const submitButton = userForm.querySelector('.form__button')
 
+if (userForm) {
+    //  выбираем кнопку подтверждения
+    const submitButton = userForm.querySelector('.form__button')
+    // добавляем действие на кнопку "отправить" - провести валидацию и в случае успеха  применить событие к невидимой кнопке подтверждения
+    submitButton.addEventListener('click', function (evt) {
+        const inputs = Array.from(userForm.querySelectorAll('.form__input'));
+        validate(inputs);
+        if (inputs.every(input => input.validity.valid)) {
+            const btnSend = userForm.querySelector("button.form__submit");
+            const event = new MouseEvent('click')
 
-// добавляем действие на кнопку "отправить" - провести валидацию и в случае успеха  применить событие к невидимой кнопке подтверждения
-submitButton.addEventListener('click', function (evt) {
-    const inputs = Array.from(userForm.querySelectorAll('.form__input'));
-    validate(inputs);
-    if (inputs.every(input => input.validity.valid)) {
-        const btnSend = userForm.querySelector("button.form__submit");
-        const event = new MouseEvent('click')
-
-        btnSend.dispatchEvent(event)
+            btnSend.dispatchEvent(event)
+        }
     }
+    )
 }
-)
+
+
+
+
+
+
 
 // главная функция валидации
 function validate(inputs) {

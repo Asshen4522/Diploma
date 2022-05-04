@@ -19393,6 +19393,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./forms */ "./resources/js/forms.js");
 
+__webpack_require__(/*! ./formSwitcher */ "./resources/js/formSwitcher.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19427,6 +19429,47 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/formSwitcher.js":
+/*!**************************************!*\
+  !*** ./resources/js/formSwitcher.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var buttonAdminPanel = document.querySelectorAll('.buttonAdminPanel');
+buttonAdminPanel.forEach(function (element) {
+  var x = element.dataset.btnPanel;
+  element.addEventListener("click", function () {
+    return openCurrentForm(x);
+  });
+});
+
+function openCurrentForm(formType) {
+  var i;
+  var x = document.getElementsByClassName("addAdminPanel");
+  buttonAdminPanel.forEach(function (element) {
+    if (element.classList.contains('buttonActive')) {
+      element.classList.remove('buttonActive');
+    }
+  });
+
+  for (i = 0; i < x.length; i++) {
+    console.log(i);
+
+    if (x[i].classList.contains('formDisplayFlex')) {
+      x[i].classList.remove('formDisplayFlex');
+      x[i].classList.add('formDisplayNone');
+    }
+  }
+
+  var ButtonType = formType + 'btn';
+  console.log(ButtonType);
+  document.getElementById(formType).classList.add('formDisplayFlex');
+  document.getElementById(ButtonType).classList.add('buttonActive');
+}
+
+/***/ }),
+
 /***/ "./resources/js/forms.js":
 /*!*******************************!*\
   !*** ./resources/js/forms.js ***!
@@ -19435,22 +19478,26 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 // получаем необходимую форму
-var userForm = document.forms['userForms']; //  выбираем кнопку подтверждения
+var userForm = document.forms['userForms'];
 
-var submitButton = userForm.querySelector('.form__button'); // добавляем действие на кнопку "отправить" - провести валидацию и в случае успеха  применить событие к невидимой кнопке подтверждения
+if (userForm) {
+  //  выбираем кнопку подтверждения
+  var submitButton = userForm.querySelector('.form__button'); // добавляем действие на кнопку "отправить" - провести валидацию и в случае успеха  применить событие к невидимой кнопке подтверждения
 
-submitButton.addEventListener('click', function (evt) {
-  var inputs = Array.from(userForm.querySelectorAll('.form__input'));
-  validate(inputs);
+  submitButton.addEventListener('click', function (evt) {
+    var inputs = Array.from(userForm.querySelectorAll('.form__input'));
+    validate(inputs);
 
-  if (inputs.every(function (input) {
-    return input.validity.valid;
-  })) {
-    var btnSend = userForm.querySelector("button.form__submit");
-    var event = new MouseEvent('click');
-    btnSend.dispatchEvent(event);
-  }
-}); // главная функция валидации
+    if (inputs.every(function (input) {
+      return input.validity.valid;
+    })) {
+      var btnSend = userForm.querySelector("button.form__submit");
+      var event = new MouseEvent('click');
+      btnSend.dispatchEvent(event);
+    }
+  });
+} // главная функция валидации
+
 
 function validate(inputs) {
   inputs.forEach(function (input) {

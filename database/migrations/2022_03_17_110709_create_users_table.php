@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\user;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -19,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->foreignId('role_id')->constrained('roles');
         });
+
+        user::create([
+            "login" => 'admin',
+            "password" => Hash::make('admin'),
+            "role_id" => 2
+        ]);
     }
 
     /**
